@@ -1,0 +1,420 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVARATE</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merienda+One&family=Montserrat+Subrayada:wght@700&family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Atomic+Age&family=Kavivanar&family=Kufam:wght@500&family=Nova+Oval&family=Risque&family=Romanesco&family=Sofadi+One&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
+
+  <style>
+    html{
+      scroll-behavior:smooth;
+  }
+  *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: 'Noto Sans JP', sans-serif;
+  }
+  
+  .row{
+      margin-left:0!important;
+      margin-right:0!important;
+  }
+  .nav_style{
+  background-color:#23bdae;
+  }
+  .nav_style a{
+      color:white;
+  }
+  #pq{
+      color: #f44108;
+  }
+  #e{
+      font-size:2rem;
+      font-family: 'Merienda One', cursive;
+  }
+  .main_header{
+      height:600px;
+      width:100%;
+  }
+  .rightside h1{
+      font-size:2.9rem;
+  }
+  .corona_rot img{
+      animation: gocorona 3s linear infinite; 
+  }
+  @keyframes gocorona{
+      0% { transform: rotate(0);}
+      100%{ transform: rotate(360deg);}
+  }
+   .leftside img{
+      animation:hb 5s linear infinite;
+  }
+  @keyframes hb{
+      0%
+      {
+          transform: scale( .75 );
+      }
+      20%
+      {
+          transform:scale(1);
+      }
+      40%
+      {
+          transform:scale(.75);
+      }
+      60%
+      {
+          transform:scale(1);
+      }
+      80%
+      {
+          transform:scale(.75);
+      }
+      100%
+      {
+          transform:scale(.75);
+      }
+  } 
+  
+  
+  /* *****************responsive*************** */
+  
+  @media(max-width:768px){
+      .main-header{
+          height:700px;
+          text-align:center;
+      }
+      .main_header h1{
+          text-align:center;
+          padding:0;
+          width:100%;
+          font-size:30px;
+  }
+  }
+
+  .footer{background-color:rgb(255, 246, 246);padding-bottom:10px;padding-top:10px;border-bottom:3px solid #129CF3;font-family: 'Ravi Prakash', cursive;}
+.footer p{font-size:1.7rem;}
+.footer h1{font-size: 2rem;}
+  
+#back-top{text-align:right;}
+#back-top a{background-color:rgba(114, 114, 114, 0.692);padding:25px;}
+#back-top a i{color:#fff;font-size:25px;}
+  </style>
+</head>
+<body>
+
+  
+  <nav class="navbar navbar-expand-md" style="background-color:rgb(6, 116, 116);color:white;">
+    <a class="navbar-brand padding-right:5px;" href="{% url 'home' %}"><h1 style="font-size: 3rem;color:white;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">COVARATE</h1></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}"><h5 style="color:rgb(255, 255, 172);">Home</h5><span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}"><h5 style="color:rgb(255, 255, 172);">Dashboard</h5></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'predictor' %}"><h5 style="color:rgb(255, 255, 172);">Predictor</h5></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<div class="main_header">
+    <div class="row w-100 h-100">
+        <div class="col-lg-5 col-md-5 col-12 order-lg-1 order-2">
+            <div class="leftside w-100 h-100 d-flex justify-content-center align-items-center">
+                <img src="{% static 'images/im8.jpeg' %}" width="400" height="400">
+            </div>
+        </div>
+        <div class="col-lg-7 col-md-7 col-12 order-lg-2 order-1">
+            <div class="rightside w-100 h-100 d-flex justify-content-center align-items-center">
+                <h1 style="font-size: 3.8rem;">Let's Fight Together Against Cor <span class="corona_rot"><img src="{% static 'images/cvirus1.jpg' %}" height="70" width="70"></span> na Virus & Make The World Safe.</h1> 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ********************about section****************** -->
+
+<div class="container-fluid sub_section pt-5 pb-5" id="aboutid">
+    <div class="section_header text-center mb-5 mt-4">
+        <h1><span style="color:red;font-size:6rem;"> A</span><span style="color:rgb(0, 0, 0);font-size:3rem;">bout COVID-19 </span></h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-5 col-md-6 col-12">
+            <img src="{% static 'images/coronav.jpg' %}" class="img-fluid ">
+        </div>
+        <div class="col-lg-6 col-md-6 col-12">
+            <h2 style="color:rgb(11, 11, 179);font-size:2.5rem;"> What is COVID-19? </h2>
+            <hr \>
+            <p>Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus.Most people infected with the COVID-19 virus will experience mild to moderate respiratory illness and recover without requiring special treatment.  Older people, and those with underlying medical problems like cardiovascular disease, diabetes, chronic respiratory disease, and cancer are more likely to develop serious illness.</p>
+            <p>The COVID-19 virus spreads primarily through droplets of saliva or discharge from the nose when an infected person coughs or sneezes, so it’s important that you also practice respiratory etiquette (for example, by coughing into a flexed elbow).</p>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid pt-1 pb-5" id="symptomsid">
+    <div class="section_header text-center mb-5 mt-4">
+        <h1 style="font-family: 'Lobster Two', cursive;"><span style="color:red;font-size:5rem;">C</span><span style="color:black;font-size:3rem;">orona Virus Most Common Symptoms </span></h1>
+    </div>
+    <div class="card-deck">
+  <div class="card">
+    <img class="card-img-top" src="{% static 'images/cough.jpg' %}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Dry Cough</h5>
+      <p class="card-text">A dry cough may also sound different than a wet cough. "It has a very consistent sound.The coughing can get so hard that the person can possibly injure their ribs or intercostal muscles</p>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="{% static 'images/fever.jpg' %}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Fever</h5>
+      <p class="card-text">One of the telltale symptoms of COVID-19 is a low-grade fever that gradually worsens over time.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="{% static 'images/tiredness1.jpg' %}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Tiredness</h5>
+      <p class="card-text">Tiredness is one of the most common symptom of COVID-19.</p>
+    </div>
+  </div>
+</div>
+<div class="lr pt-5">
+        <div class="card-deck">
+  <div class="card">
+    <img class="card-img-top" src="{% static 'images/d_b1.jpg' %}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Difficulty in breathing</h5>
+      <p class="card-text">Experiencing breathing difficulty describes discomfort when breathing and feeling as if someone can’t draw a complete breath.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="{% static 'images/sore_throat1.jpg' %}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Sore throat</h5>
+      <p class="card-text">A sore throat occurs when your pharynx, or throat, becomes inflamed or irritated.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="{% static 'images/runny_nose.jpg' %}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Runny nose</h5>
+      <p class="card-text">A runny nose is the result of excess nasal mucus production, leading to watery nasal secretions that discharge from the nostrils or drip down into the throat.</p>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+<!-- *************Prevention********** -->
+
+
+<div class="ab pt-5">
+<div class="container-fluid sub_sec pt-5 pb-5" id="preventid">
+    <div class="section_header text-center mb-5 mt-4">
+        <h1><span style="color:red;font-size:5rem;">T</span><span style="color:black;font-size:3rem;">ips To Prevent Corona Virus</span> </h1>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-12 mt-5">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-12">
+              <figure class="text-center">
+            <img src="{% static 'images/hand_wash.jpg' %}" class="image-fluid" width="100" height="100">
+            </figure>
+            </div>
+            <div class="col-lg-8 col-md-8 col-12">
+              <p>Wash your hands regularly for 20 seconds with soap and water or alcohol based rub.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-12 mt-5">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-12">
+              <figure class="text-center">
+            <img src="{% static 'images/stay_home.jpg' %}" class="image-fluid" width="100" height="100">
+            </figure>
+            </div>
+            <div class="col-lg-8 col-md-8 col-12">
+              <p>Stay home and self-isolate from others in the household if you feel unwell.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-12 mt-5">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-12">
+              <figure class="text-center">
+            <img src="{% static 'images/mask.jpg' %}" class="image-fluid" width="100" height="100">
+            </figure>
+            </div>
+            <div class="col-lg-8 col-md-8 col-12">
+              <p>Everyone should wear mask before going outside.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-12 mt-5">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-12">
+              <figure class="text-center">
+            <img src="{% static 'images/sneeze.jpg' %}" class="image-fluid" width="100" height="100">
+            </figure>
+            </div>
+            <div class="col-lg-8 col-md-8 col-12">
+              <p>Cough and sneeze into your elbow.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-12 mt-5">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-12">
+              <figure class="text-center">
+            <img src="{% static 'images/social.jpg' %}" class="image-fluid" width="100" height="100">
+            </figure>
+            </div>
+            <div class="col-lg-8 col-md-8 col-12">
+              <p>Avoid crowds,public,close contact and maintain the social distance(1m or 3feet).</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-12 mt-5">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-12">
+              <figure class="text-center">
+            <img src="{% static 'images/news.jpg' %}" class="image-fluid" width="100" height="100">
+            </figure>
+            </div>
+            <div class="col-lg-8 col-md-8 col-12">
+              <p>Stay informed correctly by watching news and follow the recommended practices.</p>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+        </div>
+</div>
+
+<!-- *************Vaccine********** -->
+
+        <div class="ab pt-5">
+<div class="container-fluid pt-5 pb-5" id="vaccineid">
+    <div class="section_header text-center mb-5 mt-4">
+        <h1> <span style="color:red;font-size:5rem;">C</span><span style="color:black;font-size:3rem;">OVID-19 Vaccine</span> </h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-5 col-md-6 col-12 ml-5">
+            <img src="{% static 'images/vaccine.jpg' %}" class="img-fluid ">
+        </div>
+        <div class="col-lg-6 col-md-6 col-12">
+            <h2 style="color:rgb(13, 13, 190)"> THE LATEST IN THE COVID-19 VACCINE race in the world  </h2>
+            <hr \>
+            <p>The race is on to find a vaccine to stop the spread of the COVID-19 virus, with countries around the world researching different vaccine technologies that might halt the pandemic. Of the 148 candidate vaccines that researchers are working on, 17 are now in human clinical trials.</p>
+            <p>When candidate vaccines make it to human clinical trials, they first go through phase 1 trials primarily to test the vaccine’s safety, determine dosages and identify any potential side effects in a small number of people. Phase 2 trials further explore safety and start to investigate efficacy on larger groups. The final stage, phase 3 trials, which few vaccines ever make it to, are much larger, involving thousands or tens of thousands of people, to confirm and assess the effectiveness of the vaccine and test whether there are any rare side effects that only show up in large groups.</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer class="footer abc">
+  <div class="container" style="padding-top:20px;">
+          <!-- <h1 class="shead wow bounceInUp"><b><span style="color:red;font-size:6rem;">C</span><span style="color:black;">ONTACT US</span></b></h1> -->
+          <div class="wow bounceInDown">
+              <div class="col-md-12 mb-2 text-right">
+                  <div id="back-top"><a class="link" style="background-color:rgb(33, 156, 228);"><i class="fa fa-angle-double-up"></i></a></div>
+          <h1 class="shead wow bounceInUp" style="color:#a72391;font-family: 'Sofadi One', cursive;text-align:center"><b>Made by Sharmistha</b></h1>
+          <b><p class="copyright normal" style="text-align: center;color:black">© 2020</a></p></b>
+          <!-- <h3 class="text-center" style="color:blue;font-family: 'Parisienne', cursive;">Made by Sharmistha</h3> -->
+          <div class="wow fadeInLeft text-center" data-wow-duration="1s" data-wow-delay=".5s">
+      </div>
+  </div>
+  </div>
+  </div>
+</footer>
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/fontawesome.min.js" integrity="sha512-fHv0GiFwHF/oEoQcl226aqC6YlueqBLMGy1A7De9EM+5QwQqQTOg4Mry7zaEF6HkfYzFk2Lek9MyKE5r0Q2U/A==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f157165916e3f89"></script> -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f157165916e3f89"></script>
+<script src="https://kit.fontawesome.com/4dd9c3f5b1.js" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function() {
+    
+    'use strict';
+   
+    new WOW().init();
+    
+});
+
+$("#back-top .link").on("click", function () {
+    $("body,html").animate(
+      {
+        scrollTop: 0,
+      },
+      900
+    );
+    return false;
+  });
+
+  var temp = $(window).height();
+  $(window).on("scroll load", function (event) {
+    if ($(window).scrollTop() > temp) {
+      $("#back-top .link").addClass("show-btn");
+    } else {
+      $("#back-top .link").removeClass("show-btn");
+    }
+  });
+
+  $(document).ready(function() {
+    
+    'use strict';
+   
+    
+    $('.nav-item, #scroll-to-top').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
+  });
+    
+    
+});
+</script>
+</body>
+</html>
+

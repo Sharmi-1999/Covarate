@@ -1,0 +1,164 @@
+{% load static %}
+
+<html>
+    <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVARATE</title>
+
+    
+    <!-- Flag sprites service provided by Martijn Lafeber, https://github.com/lafeber/world-flags-sprite/blob/master/LICENSE -->
+    <link rel="stylesheet" type="text/css" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
+
+
+    
+        <style>
+            html{
+                scroll-behavior:smooth;
+            }
+            *{
+                margin:0;
+                padding:0;
+                /*box-sizing:border-box;*/
+                font-family: 'Noto Sans JP', sans-serif;
+            }
+            
+            .fixed-header, .fixed-footer{
+                width: 100%;
+                position: fixed;        
+                background: #333;
+                padding: 10px 0;
+                color: #fff;
+            }
+            .fixed-header{
+                top: 0;
+            }
+            .fixed-footer{
+                bottom: 0;
+            }
+            .container{
+                width: 100%;
+                margin: 0 auto; /* Center the DIV horizontally */
+            }
+        </style>
+    </head>
+<body>
+    <nav class="navbar navbar-expand-md" style="background-color:rgb(6, 116, 116);color:white;">
+        <a class="navbar-brand padding-right:5px;" href="{% url 'home' %}"><h1 style="font-size: 3rem;color:white;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">COVARATE</h1></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home' %}"><h5 style="color:rgb(255, 255, 172);">Home</h5><span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'index' %}"><h5 style="color:rgb(255, 255, 172);">Dashboard</h5></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'predictor' %}"><h5 style="color:rgb(255, 255, 172);">Predictor</h5></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      
+<!-- *************Contact********** -->
+
+
+<div class="cd pt-5">
+    <div class="container-fluid pt-5 pb-5" id="contactid">
+        <div class="section_header text-center mb-5 mt-4">
+            <h1 style="color:rgb(147, 48, 187);font-size:3.5rem;font-style:bolder;"> Please Enter Details </h1>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-12">
+            <form action="Infprob" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+            <!-- <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" name="name" id="name" placeholder="e.g. abc" autocomplete="off" required>
+      </div> -->
+      <div class="form-group">
+        <label>Age</label>
+        <input type="age" class="form-control" name="age" id="age" placeholder="e.g. 20" autocomplete="off" required>
+      </div>
+      <!-- <div class="form-group">
+        <label>Mobile</label>
+        <input type="number" class="form-control" name="mobile" id="mobile" placeholder="e.g. 123" autocomplete="off" required>
+      </div> -->
+      <div class="form-group">
+        <label for="fever">Body Temperature</label>
+        <input type="text" class="form-control" name="fever" id="fever" placeholder="e.g. 100" autocomplete="off" required>
+      </div>
+      <div class="form-group">
+        <label for="pain">Body Pain</label>
+        <select class="form-control" name="pain" id="pain" autocomplete="off" required>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="runny">Runny Nose</label>
+        <select class="form-control" name="runnynose" id="runnynose" autocomplete="off" required>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Breathing Difficulty</label>
+        <select class="form-control" name="diffbreath" id="diffbreath" autocomplete="off" required>
+        <option value="-1">No Difficulty</option>
+        <option value="0">Little Difficulty</option>
+        <option value="1">Severe Difficulty</option>
+      </select>
+      </div>
+    
+      <!-- <div class="form-group">
+        <label>Select Symptoms</label><br>
+    
+        <div class="custom-control custom-checkbox custom-control-inline text-capitalize">
+        <input type="checkbox" class="custom-control-input" id="customcheckbox1" name="coronasym" value="cold">
+        <label class="custom-control-label" for="customcheckbox1">Cold</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline text-capitalize">
+        <input type="checkbox" class="custom-control-input" id="customcheckbox2" name="coronasym" value="fever">
+        <label class="custom-control-label" for="customcheckbox2">Fever</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline text-capitalize">
+        <input type="checkbox" class="custom-control-input" id="customcheckbox3" name="coronasym" value="breath">
+        <label class="custom-control-label" for="customcheckbox3">Difficulty in Breath</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline text-capitalize">
+        <input type="checkbox" class="custom-control-input" id="customcheckbox4" name="coronasym" value="tired">
+        <label class="custom-control-label" for="customcheckbox4">Feeling weak</label>
+          </div>
+      </div> -->
+      <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+    </form>
+            </div>
+    </div>
+    <div class="container">
+    <a href="#" class="to_top float-right pr-5">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+    </div>
+    
+    </div>
+    </div>
+      </body>

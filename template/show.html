@@ -1,0 +1,84 @@
+{% load static %}
+
+<html>
+    <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVARATE</title>
+
+    
+    <!-- Flag sprites service provided by Martijn Lafeber, https://github.com/lafeber/world-flags-sprite/blob/master/LICENSE -->
+    <link rel="stylesheet" type="text/css" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
+
+
+    
+        <style>
+            html{
+                scroll-behavior:smooth;
+            }
+            *{
+                margin:0;
+                padding:0;
+                /*box-sizing:border-box;*/
+                font-family: 'Noto Sans JP', sans-serif;
+            }
+            
+            .fixed-header, .fixed-footer{
+                width: 100%;
+                position: fixed;        
+                background: #333;
+                padding: 10px 0;
+                color: #fff;
+            }
+            .fixed-header{
+                top: 0;
+            }
+            .fixed-footer{
+                bottom: 0;
+            }
+            .container{
+                width: 100%;
+                margin: 0 auto; /* Center the DIV horizontally */
+            }
+        </style>
+    </head>
+<body>
+    <nav class="navbar navbar-expand-md" style="background-color:rgb(6, 116, 116);color:white;">
+        <a class="navbar-brand padding-right:5px;" href="{% url 'home' %}"><h1 style="font-size: 3rem;color:white;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">COVARATE</h1></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home' %}"><h5 style="color:rgb(255, 255, 172);">Home</h5><span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'index' %}"><h5 style="color:rgb(255, 255, 172);">Dashboard</h5></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'predictor' %}"><h5 style="color:rgb(255, 255, 172);">Predictor</h5></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container">
+        <h1 class="text-center show m-3" style="color:blue">Thanks For Visiting.Stay Home and Safe</h1>
+        <h3 class="text-center"><p>Your Infection Probabilty is <span class="inf" style="color:red";>{{inf}}%.</span></p></h3>
+      </div>
+</body>
+</html>

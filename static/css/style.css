@@ -1,0 +1,173 @@
+html{
+    scroll-behavior:smooth;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.row{
+    margin-left:0!important;
+    margin-right:0!important;
+}
+.nav_style{
+background-color:#23bdae;
+}
+.nav_style a{
+    color:white;
+}
+#pq{
+    color: #f44108;
+}
+#e{
+    font-size:2rem;
+    font-family: 'Merienda One', cursive;
+}
+.main_header{
+    height:450px;
+    width:100%;
+}
+.rightside h1{
+    font-size:2.9rem;
+}
+.corona_rot img{
+    animation: gocorona 3s linear infinite; 
+}
+@keyframes gocorona{
+    0% { transform: rotate(0);}
+    100%{ transform: rotate(360deg);}
+}
+ .leftside img{
+    animation:hb 5s linear infinite;
+}
+@keyframes hb{
+    0%
+    {
+        transform: scale( .75 );
+    }
+    20%
+    {
+        transform:scale(1);
+    }
+    40%
+    {
+        transform:scale(.75);
+    }
+    60%
+    {
+        transform:scale(1);
+    }
+    80%
+    {
+        transform:scale(.75);
+    }
+    100%
+    {
+        transform:scale(.75);
+    }
+} 
+#tbval{
+    background-color:#CDDC39;
+}
+.p{
+    color:blue;
+}
+.q{
+    color:#f4b906;
+}
+.r{
+    color:green;
+}
+.s{
+    color:red;
+}
+.sub_section{
+    background-color:#f3f1f6;
+}
+.pre ul{
+    padding-left:20px;
+}
+.sub_sec{
+    background-color:beige;
+}
+.footer_style{
+    background-color:#80d5cd!important;
+}
+.footer_style p{
+    margin-bottom:0;
+}
+.section_header h1{
+    color:#461f89;
+}
+.cd{
+    background:aliceblue;
+}
+
+/* *************top scroll********** */
+
+#myBtn{
+    display:none;
+    position:fixed;
+    bottom:30px;
+    right:40px;
+    z-index:99;
+    border:none;
+    outline:none;
+    background-color:green;
+    color:white;
+    cursor:pointer;
+    padding:10px;
+    border-radius:10px;
+}
+#myBtn:hover{
+    background:#606060;
+}
+
+/* *****************responsive*************** */
+
+@media(max-width:768px){
+    .main-header{
+        height:700px;
+        text-align:center;
+    }
+    .main_header h1{
+        text-align:center;
+        padding:0;
+        width:100%;
+        font-size:30px;
+}
+.count_style{
+    display:inline!important;
+}
+.count_style p{
+    text-align:center;
+}
+}
+
+.to_top{
+    background:white;
+    position:fixed;
+    bottom:16px;
+    right:32px;
+    width: 240px !important;
+    height: 240px !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px !important;
+    color: black;
+    text-decoration: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .4s;
+}
+
+.to-top.active{
+    bottom:32px;
+    pointer-events: auto;
+    opacity: 1;
+}
+</style>
