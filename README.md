@@ -14,9 +14,8 @@ pipenv shell
 ```
 
 ### Install all the libraries(present in pipfile/requirements.txt)
-
+> e.g.
 ```bash
->e.g.
 pipenv install django
 ```
 
