@@ -27,4 +27,3 @@ python manage.py runserver
 
 
 ### Author & Created by - Sharmistha Mandal.
-### email-sm2244@it.jgec.ac.in
