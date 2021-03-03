@@ -9,14 +9,13 @@ Covarate is a Django Covid-19 web app with ML. This website can provide live upd
 
 
 ```bash
-cd secondDashboard
 pipenv shell
 ```
 
 ### Install all the libraries(present in pipfile/requirements.txt)
-> e.g.
+
 ```bash
-pipenv install django
+pipenv install -r requirements.txt
 ```
 
 ### Run Django from root and run the server in localhost
