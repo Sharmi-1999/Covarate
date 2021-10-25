@@ -87,6 +87,8 @@ def indiCountryData(request):
     confirmedGlobal=pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv',encoding='utf-8',na_values=None)
     deathGLobal=pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv')
     recoverGlobal=pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv')
+    statewise=pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/01-03-2021.csv')
+
     totalCount = confirmedGlobal[confirmedGlobal.columns[-1]].sum()
     totaldeath = deathGLobal[confirmedGlobal.columns[-1]].sum()
     totalrecover = recoverGlobal[confirmedGlobal.columns[-1]].sum()
@@ -106,6 +108,13 @@ def indiCountryData(request):
     countryDataSpe=countryDataSpe.fillna(0)
     datasetsForLine=[{'yAxisID': 'y-axis-1','label':'Daily Cumulated Data','data':countryDataSpe['values'].values.tolist(),'borderColor':'#03a9fc','backgroundColor':'#03a9fc','fill':'false'},
                     {'yAxisID': 'y-axis-2','label':'Rolling Mean 4 days','data':countryDataSpe['rollingMean'].values.tolist(),'borderColor':'#fc5203','backgroundColor':'#fc5203','fill':'false'}]
-    axisvalues=countryDataSpe.index.tolist()                
-    context={'axisvalues':axisvalues,'countryName':countryNamse,'totalCount':totalCount,'totaldeath':totaldeath,'totalrecover':totalrecover,'countryNames':countryNames,'barplotvals':barplotvals,'showMap':showMap,'datasetsForLine':datasetsForLine}
+    axisvalues=countryDataSpe.index.tolist() 
+    statedata=pd.DataFrame(statewise[statewise['Country_Region']==countryNamse])
+    statename=statedata['Combined_Key'].values.tolist()
+    uniquestatenames=[]
+    for i in statename:
+        uniquestatenames.append(i.split(',',1)[0])
+    stateconfirmed=statedata['Confirmed'].values.tolist()
+    statedeaths=statedata['Deaths'].values.tolist()              
+    context={'axisvalues':axisvalues,'countryName':countryNamse,'totalCount':totalCount,'totaldeath':totaldeath,'totalrecover':totalrecover,'countryNames':countryNames,'barplotvals':barplotvals,'showMap':showMap,'datasetforbar':stateconfirmed[0:50],'statelabel':uniquestatenames[0:50],'statedeaths':statedeaths[0:50],'datasetsForLine':datasetsForLine}
     return render(request,'index.html',context)
