@@ -3,6 +3,16 @@ import pandas as pd
 import pickle
 # from sklearn.externals import joblib
 
+import numpy as np
+import pandas as pd 
+import matplotlib.pyplot as plt
+import plotly.graph_objs as go
+from plotly import tools
+from plotly.offline import download_plotlyjs, plot, iplot
+import plotly.express as px
+import warnings
+warnings.filterwarnings("ignore")
+
 file = open('./models/model.pkl', 'rb')
 clf = pickle.load(file)
 file.close()
@@ -18,7 +28,63 @@ file.close()
 df3=pd.read_json('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/world-population-density.json')
 
 def homepage(request):
-    return render(request,'home.html')
+    df1 = pd.read_csv('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/vaccinations.csv', error_bad_lines=False)
+    df1.dropna()
+
+    country_vaccine = df1.groupby(["location", "iso_code"])['total_vaccinations', 
+                                                                       'total_vaccinations_per_hundred',
+                                                                      'daily_vaccinations',
+                                                                      'daily_vaccinations_per_million',
+                                                                      'people_vaccinated',
+                                                                      'people_vaccinated_per_hundred',
+                                                                       'people_fully_vaccinated', 'people_fully_vaccinated_per_hundred'
+                                                                      ].max().reset_index()
+    country_vaccine.columns = ["location", "iso_code","Total vaccinations", "Percent", "Daily vaccinations", 
+                           "Daily vaccinations per million", "People vaccinated", "People vaccinated per hundred",
+                           'People fully vaccinated', 'People fully vaccinated percent']
+    trace = go.Choropleth(
+            locations = country_vaccine['location'],
+            locationmode='country names',
+            z = country_vaccine['Total vaccinations'],
+            text = country_vaccine['location'],
+            autocolorscale =False,
+            reversescale = True,
+            colorscale = 'viridis',
+            marker = dict(
+                line = dict(
+                    color = 'rgb(0,0,0)',
+                    width = 0.5)
+            ),
+            colorbar = dict(
+                title = 'Total vaccinations',
+                tickprefix = '')
+        )
+
+    data = [trace]
+    layout = go.Layout(
+    title = 'Total vaccinations per country',
+    geo = dict(
+        showframe = True,
+        showlakes = False,
+        showcoastlines = True,
+        projection = dict(
+            type = 'natural earth'
+        )
+    )
+    )
+
+    fig = dict( data=data, layout=layout )
+
+    cols = ['location', 'total_vaccinations']
+
+    vacc_data =df1[cols].groupby('location').max().sort_values('total_vaccinations', ascending=False) 
+    fig11 = px.choropleth(locations=vacc_data.index, locationmode='country names' ,
+                    data_frame=vacc_data,
+                    color='total_vaccinations', title='Total Vaccinated Population',
+                    labels={'total_vaccinations':"No of Vaccinated Population"},color_continuous_scale='sunset'
+                   )
+
+    return render(request,'home.html',context={'fig':fig11.show()})
 
 def predpage(request):
     return render(request,'predictor.html')
