@@ -55,7 +55,7 @@
         </style>
     </head>
 <body>
-    <nav class="navbar navbar-expand-md" style="background-color:rgb(6, 116, 116);color:white;">
+    <nav class="navbar navbar-dark navbar-expand-md" style="background-color:rgb(6, 116, 116);color:white;">
         <a class="navbar-brand padding-right:5px;" href="{% url 'home' %}"><h1 style="font-size: 3rem;color:white;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">COVARATE</h1></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -64,10 +64,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="{% url 'home' %}"><h5 style="color:rgb(255, 255, 172);">Home</h5><span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{% url 'home' %}"><h5 style="color:rgb(255, 255, 172);">Home</h5></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'index' %}"><h5 style="color:rgb(255, 255, 172);">Dashboard</h5></a>
+              <a class="nav-link" href="{% url 'index' %}"><h5 style="color:rgb(255, 255, 172);">Dashboard</h5><span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'predictor' %}"><h5 style="color:rgb(255, 255, 172);">Predictor</h5></a>
